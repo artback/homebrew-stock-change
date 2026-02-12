@@ -11,7 +11,7 @@ class StockPrice < Formula
   def install
     venv = virtualenv_create(libexec, "python3.12")
     # Ensure setuptools and pip are up to date in the venv
-    venv.pip_install "setuptools", "pip"
+    venv.pip_install "setuptools"
     # Install the current project and its dependencies
     venv.pip_install_and_link buildpath
   end
