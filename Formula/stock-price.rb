@@ -4,14 +4,18 @@ class StockPrice < Formula
   desc "CLI to track stock prices and dividends"
   homepage "https://github.com/artback/stock-change"
   url "https://github.com/artback/stock-change.git", branch: "main"
-  version "0.1.3"
+  version "0.1.4"
 
   depends_on "python@3.12"
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
-    # Ensure setuptools and pip are up to date in the venv
-    # Install the current project and its dependencies
+    venv.pip_install "yfinance"
+    venv.pip_install "rich"
+    venv.pip_install "PyYAML"
+    venv.pip_install "python-dotenv"
+    venv.pip_install_and_link buildpath
+  end
     venv.pip_install_and_link buildpath
   end
 
