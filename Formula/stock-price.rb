@@ -4,7 +4,7 @@ class StockPrice < Formula
   desc "CLI to track stock prices and dividends"
   homepage "https://github.com/artback/stock-change"
   url "https://github.com/artback/stock-change.git", branch: "main"
-  version "0.1.1"
+  version "0.1.2"
 
   depends_on "python@3.12"
 
