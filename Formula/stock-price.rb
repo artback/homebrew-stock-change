@@ -16,8 +16,6 @@ class StockPrice < Formula
     venv.pip_install "python-dotenv"
     venv.pip_install_and_link buildpath
   end
-    venv.pip_install_and_link buildpath
-  end
 
   test do
     system "#{bin}/stock-price", "--help"
