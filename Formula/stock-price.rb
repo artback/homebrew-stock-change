@@ -1,22 +1,20 @@
 class StockPrice < Formula
-  include Language::Python::Virtualenv
-
   desc "CLI to track stock prices and dividends"
   homepage "https://github.com/artback/stock-change"
   url "https://github.com/artback/stock-change.git", branch: "main"
-  version "0.1.8"
+  version "0.1.9"
 
   depends_on "python@3.12"
 
   def install
-    # 1. Create a clean virtualenv
-    venv = virtualenv_create(libexec, "python3.12")
+    # Create a real virtualenv manually to ensure pip is present
+    system "python3.12", "-m", "venv", libexec
     
-    # 2. Install the package and ALL dependencies into libexec
-    # Using the venv's pip directly ensures dependencies (numpy, pandas, etc.) are installed.
-    system libexec/"bin/pip", "install", ".", "--ignore-installed"
+    # Use the venv's pip to install the package and its dependencies
+    system libexec/"bin/pip", "install", "--upgrade", "pip", "setuptools"
+    system libexec/"bin/pip", "install", "."
     
-    # 3. Manually link the entry point into bin/
+    # Link the binary
     bin.install_symlink libexec/"bin/stock-price"
   end
 
